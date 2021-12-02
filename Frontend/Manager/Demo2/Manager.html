@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+
+    <title>Quản lý nhân viên</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/Manager1/css/user.css" />
+    <link rel="stylesheet" href="/Manager/css/manager.css" />
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script>
+      // Check xem User đã login chưa.Nếu chưa thì chuyển về trang login
+      // if (!localStorage.getItem("ID")) {
+      //     window.location.replace("Login2.html");
+      // }
+  </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Thông tin nhân viên</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <table> 
+         <div class="modal-body" style="background: coral;">
+              <div class="page-content page-container" id="page-content">
+           <div class="padding">
+             <div class="row container d-flex justify-content-center">
+               <div class="col-xl-11 col-md-10">
+                 <div class="card user-card-full">
+                   <div class="row m-l-0 m-r-0">
+                     <div class="col-sm-4 bg-c-lite-green user-profile">
+                       <div class="card-block text-center text-white">
+
+
+
+                         <div class="col-sm-12 text-center">
+                          <div class="imgAvatar">                  
+                          </div>
+                          <form id="form_avatar">
+                            <div class="row">
+                                <input name="image" id="files" type="file" class="btn btn-info">
+                               
+                            </div>
+                            <div class="row">
+                                <button id="btn_changeAvatar" type="button" class="btn btn-warning">Change Avatar</button>
+                            </div>
+                        </form>
+    
+                      </div>
+                      
+
+                         </button>
+                       </div>
+                     </div>
+                     <div class="col-sm-8" >
+                       <div class="card-block">
+                         <h6 class="m-b-20 p-b-5 b-b-default f-w-600">
+                          ----------------------------------------Infomations---------------------------------
+                         </h6>
+                         <div class="row">
+                           <div class="col-sm-4">
+                             <p class="m-b-10 f-w-600">Username:</p>
+                              <h6 id="infoemail"></h6>
+                              
+                           </div>
+
+                           <div class="col-sm-4">
+
+                             <p class="m-b-10 f-w-600">Fullname:</p>
+                             <h6 id="info-fullname"></h6>
+                           </div>
+                         </div>
+                      
+                         <!-- <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
+                           ----------------------------------------Projects---------------------------------------
+                         </h6> -->
+                         <div class="row">
+                           <div class="col-sm-4">
+                             <p class="m-b-10 f-w-600">Department</p>
+                             <h6 id="info-department"></h6>
+                           </div>
+                           <div class="col-sm-4">
+                             <p class="m-b-10 f-w-600">Position</p>
+                             <h6 id="info-position"></h6>
+                           </div>
+                         </div>
+     
+                         <div class="row">
+                          <div class="col-sm-4">
+                            <p class="m-b-10 f-w-600">Email</p>
+                            <h6 id="info-email"></h6>
+                          </div>
+                          <div class="col-sm-4">
+                            <p class="m-b-10 f-w-600"> Create Date</p>
+                            <h6 id="info-date"></h6>
+                          </div>
+                        </div>
+                          
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
+             </div>
+             <tbody id="Result_info"></tbody>
+           </div>
+         </div>
+             </div>
+              
+            </table>
+            <!-- Modal body -->
+           
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+ <div class="table-responsive" >
+          <div class="table-wrapper">
+            <h1 style="align-content: center; margin-left: 500px;">Nhập Thông Tin nhân viên</h1>
+            <div class="table-title" style="margin-left: 900px;">
+              <div class="row">
+                
+                <div class="col-xs-5">
+                  
+                </div>
+                <div class="col-xs-7" >
+                  <a
+                    href="#"
+                    class="btn btn-primary"
+                    title="Your Infomation"
+                    id="user-info"
+                    onclick="showAccountInfo()"
+                  >
+
+                  <icon class="material-icons" onclick="showAccountInfo()"
+                    >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      info
+                    </button></icon>
+                 
+                  </a>
+                  <a href="#" class="btn btn-primary" title="New Account">
+                    <icon class="material-icons" onclick="addAccountClick()"
+                      >add</icon
+                    >
+                  </a>
+                  <a href="#" class="btn btn-primary" title="Logout">
+                    <icon class="material-icons" onclick="CancelLogin()">logout</icon>
+                  </a>
+                  <span href="#" class="btn" title="search"
+                    ><input type="text" name="input" id="Search_ID" />
+                    <btn  onclick="getAccountByID()">&#x1F50D; </btn>
+                  </span>
+                </div>
+
+
+              </div>
+
+
+            </div>
+      <div id="wellcome">
+       
+        <br>
+        <!-- <div class="row">
+            <div class="col-sm-6 text-center">
+                <div class="imgAvatar">                  
+                </div>
+            </div>
+            <div class="col-sm-6 text-center">
+                <form id="form_avatar">
+                    <div class="row">
+                        <input name="image" id="files" type="file" class="form-control">
+                        <br>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <button id="btn_changeAvatar" type="button" class="form-control">Change Avatar</button>
+                    </div>
+                </form>
+            </div>
+        </div> -->
+    </div>
+
+
+      <div class="form"  >
+        </div>
+        <form method="POST" id="Main_Form_ID" class="row" style="margin-left: 150px;">
+          <div class="form-group">
+            <label for="">ID: </label>
+            <input style="width: 500px;"
+              type="number"
+              required="true"
+              class="form-control"
+              id="ID_ID"
+              value=""
+              placeholder="Enter Id"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Email: </label>
+            <input style="width: 500px;"
+              type="email"
+              required="true"
+              class="form-control"
+              id="Email_ID"
+              value=""
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Username: </label>
+            <input style="width: 500px;"
+              type="text"
+              required="true"
+              class="form-control"
+              id="Username_ID"
+              value=""
+              placeholder="Enter Username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Fullname: </label>
+            <input style="width: 500px;"
+              type="text"
+              required="true"
+              class="form-control"
+              id="Fullname_ID"
+              value=""
+              placeholder="Enter Fullname"
+            />
+          </div>
+          <div class="form-group" >
+            <div style="margin-left: 000px;">
+              <label for="sel1" >Select a Department:</label>
+              <select class="form-control" id="Department_ID" style="width: 500px; ">
+                <option>--Select a Department--</option>
+                <!-- <option>Accounting</option>
+                <option>Business Development</option>
+                <option>Engineering</option>
+                <option>Human Resources</option>
+                <option>Research and Development</option> -->
+              </select></div>
+            
+          </div>
+          <div class="form-group">
+            <label for="sel1">Select a Position:</label>
+            <select class="form-control" id="Position_ID" style="width: 500px;">
+              <option>--Select a Position--</option>
+              <!-- <option>Developer</option>
+              <option>Tester</option>
+              <option>Scrum Master</option>
+              <option>PM</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Cretate Date: </label>
+            <input style="width: 500px;"
+              type="date"
+              required="true"
+              class="form-control"
+              id="Cretate_Date_ID"
+              value=""
+            />
+          </div>
+          <br>
+          <br>
+          <div class="form-group">
+            <br>
+            <input type="submit" class="btn btn-success" value="Save" />
+
+            <input
+              type="button"
+              class="btn btn-success"
+              id="update_btn"
+              value="Update"
+            />
+            <input
+              type="button"
+              class="btn btn-success"
+              id="reset_btn"
+              value="Reset"
+            />
+            <button type="button"  onclick="gotokhenthuong()" class="btn btn-success">Khen Thưởng<button>
+            <button type="button" id="excel" onclick="excel()" class="btn btn-success">Xuất File Excel<button>
+              <input type="button" value="Print" onclick=" window.print()" />
+
+          </div>
+
+          
+          
+        </form>
+      </div>
+
+      <div class="container">
+        <div class="form" style="background: white">
+         
+          
+
+          <h3>Thông tin nhân viên trên hệ thống</h3>
+          <table class="table table-hover" id="Detail_Staff_ID">
+            <thead>
+              <tr>
+                <th>
+                  ID
+                  <i class="fa fa-fw fa-sort" onclick="changeSort('id')"></i>
+                </th>
+                <th>
+                  Email
+                  <i class="fa fa-fw fa-sort" onclick="changeSort('email')"></i>
+                </th>
+                <th>
+                  Username
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('username')"
+                  ></i>
+                </th>
+                <th>
+                  Fullname
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('fullname')"
+                  ></i>
+                </th>
+                <th>
+                  Department
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('department')"
+                  ></i>
+                </th>
+                <th>
+                  Position
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('position')"
+                  ></i>
+                </th>
+                <th>
+                  Cretate Date
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('createDate')"
+                  ></i>
+                </th>
+
+                <th>Edit</th>
+                <th>Delete</th>
+                
+              </tr>
+            </thead>
+            <tbody id="Result_TB"></tbody>
+          </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination" id="pagination">
+              <!-- <li class="page-item">
+                <a class="page-link" href="#">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <script>
+     
+      $('#excel').click(function(){
+       $("#Detail_Staff_ID").table2excel({
+      name: "Worksheet Name",
+      filename: "Thông Tin Nhân Viên",
+       fileext: ".xls"
+ }) 
+ });
+      </script>
+    <script type="text/javascript" src="QLNV2.js"></script>
+  </body>
+</html>

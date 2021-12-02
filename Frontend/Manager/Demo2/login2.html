@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Login</title>
+    <link rel="icon" href="/imgs/avatar.png" />
+  </head>
+
+  <body>
+    <div class="container px-4 py-5 mx-auto">
+      <div class="card card0">
+        <div class="d-flex flex-lg-row flex-column-reverse">
+          <div class="card card1">
+            <div class="row justify-content-center my-auto">
+              <div class="col-md-8 col-10 my-5">
+                <div class="row justify-content-center px-3 mb-3">
+                  <img id="logo" src="/imgs/avatar.png" />
+                </div>
+                <h3 class="mb-5 text-center heading">Awesome</h3>
+                <h6 class="msg-info">Please login to your account</h6>
+                <div class="form-group for-register">
+                  <label class="form-control-label text-muted">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label text-muted">Username</label>
+                  <input
+                    type="email"
+                    id="Email_Login_id"
+                    name="username"
+                    placeholder="Username"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label text-muted">Password</label>
+                  <input
+                    type="password"
+                    id="Password_Login_id"
+                    name="password"
+                    placeholder="Password"
+                    class="form-control"
+                  />
+                </div>
+                <!-- <div class="form-group for-register">
+                  <label class="form-control-label text-muted">Password</label>
+
+                  <input type="password" id="RePassword name=" RePassword 
+                  placeholder="RePassword" class="form-control">
+                </div> -->
+                <div class="row justify-content-center my-3 px-3 for-login">
+                  <button class="btn-block btn-color" onclick="loginSuccess()">
+                    Login
+                  </button>
+                </div>
+                <!-- <div class="row justify-content-center my-3 px-3 for-register">
+                  <button class="btn-block btn-color" onclick="sendRegister()">
+                    Register
+                  </button>
+                </div> -->
+                <div class="row justify-content-center my-2">
+                  <a href="#"
+                    ><small class="text-muted">Forgot Password?</small></a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="bottom text-center mb-5">
+              <p class="sm-text mx-auto mb-3 for-login">
+                Don't have an account?<button
+                  class="btn btn-white ml-2"
+                  onclick="gotoRegisterForm()"
+                >
+                  Create new
+                </button>
+              </p>
+              <!-- <p class="sm-text mx-auto mb-3 for-register">
+                Have an account?<button
+                  class="btn btn-white ml-2"
+                  onclick="sendRegister()"
+                >
+                  Login
+                </button>
+              </p> -->
+            </div>
+          </div>
+          <div class="card card2">
+            <div style="margin-top: 100px">
+              <div class="my-auto mx-md-8 px-md-5 right">
+                <h2 class="text-white">
+                  Trường đại học Kinh Tế Kĩ Thuật Công Nghiệp
+                </h2>
+                <h3>Thực Tập Lập Trình Web</h3>
+                <h5>GV : Cao Ngọc Ánh</h5>
+                <h4>Đề tài :Quản Lý Nhân Viên</h4>
+                <h4>SV: Phùng Minh Thắng</h4>
+                <h5>
+                  There are my project to learn CRUD, Spring, and Basic
+                  FrontEnd.
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="QLNV2.js"></script>
+  </body>
+</html>
