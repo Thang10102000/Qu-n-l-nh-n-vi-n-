@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vti.entity.Account;
-import com.vti.entity.Department;
-import com.vti.entity.Position;
 import com.vti.repository.IAccountRepository;
-import com.vti.ultils.*;
+import com.vti.ultils.FileManager;
 
 
 

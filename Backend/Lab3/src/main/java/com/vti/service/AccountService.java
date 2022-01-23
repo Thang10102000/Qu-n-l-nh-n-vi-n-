@@ -1,4 +1,4 @@
-package com.vti.service;
+ package com.vti.service;
 
 
 import java.util.UUID;
@@ -39,19 +39,15 @@ public class AccountService implements IAccountService {
 	private IDepartmentRepository departmentRepository;
 	@Autowired
 	private IPositionRepository positionRepository;
-
-	@Autowired
+    @Autowired
 	private ApplicationEventPublisher eventPublisher;
-	
 	@Autowired	
 	private RegistrationUserTokenRepository registrationUserTokenRepository;
 
-	
 	//Dùng để mã hóa Password
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	@SuppressWarnings("deprecation")
 	@Override
 	public Page<Account> getAllAccount(Pageable pageable, String search) {
@@ -116,17 +112,14 @@ public class AccountService implements IAccountService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Account account = getAccountByUsername(username);
-
-		if (account == null) {
+         if (account == null) {
 			throw new UsernameNotFoundException(username);
 		}
-
 		return new User(account.getUsername(), account.getPassword(),AuthorityUtils.createAuthorityList("user")) ;
 	}
 
 	@Override
 	public Account getAccountByUsername(String username) {
-		
 		return accountRepository.findByUsername(username);
 	}
 

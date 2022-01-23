@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Quản lý nhân viên</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+      // Check xem User đã login chưa.Nếu chưa thì chuyển về trang login
+      if (!localStorage.getItem("ID")) {
+          window.location.replace("Login.html");
+      }
+  </script>
+
+  </head>
+  <body>
+    <div class="container">
+
+      <div id="wellcome">
+      
+        <br>
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <div class="imgAvatar">                  
+                </div>
+            </div>
+            <div class="col-sm-6 text-center">
+                <form id="form_avatar">
+                    <div class="row">
+                        <input name="image" id="files" type="file" class="form-control">
+                        <br>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <button id="btn_changeAvatar" type="button" class="form-control">Change Avatar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+      <div class="form">
+        </div>
+        <button  onclick="CancelLogin()">Lout Out</button>
+        <h3>Quản lý nhân viên</h3>
+
+        <form method="POST" id="Main_Form_ID">
+          <div class="form-group">
+            <label for="">ID: </label>
+            <input
+              type="number"
+              required="true"
+              class="form-control"
+              id="ID_ID"
+              value=""
+              placeholder="Enter Id"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Email: </label>
+            <input
+              type="email"
+              required="true"
+              class="form-control"
+              id="Email_ID"
+              value=""
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Username: </label>
+            <input
+              type="text"
+              required="true"
+              class="form-control"
+              id="Username_ID"
+              value=""
+              placeholder="Enter Username"
+            />
+          </div>
+          <div class="form-group">
+            <label for="">Fullname: </label>
+            <input
+              type="text"
+              required="true"
+              class="form-control"
+              id="Fullname_ID"
+              value=""
+              placeholder="Enter Fullname"
+            />
+          </div>
+          <div class="form-group">
+            <label for="sel1">Select a Department:</label>
+            <select class="form-control" id="Department_ID">
+              <option>--Select a Department--</option>
+              <!-- <option>Accounting</option>
+              <option>Business Development</option>
+              <option>Engineering</option>
+              <option>Human Resources</option>
+              <option>Research and Development</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sel1">Select a Position:</label>
+            <select class="form-control" id="Position_ID">
+              <option>--Select a Position--</option>
+              <!-- <option>Developer</option>
+              <option>Tester</option>
+              <option>Scrum Master</option>
+              <option>PM</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Cretate Date: </label>
+            <input
+              type="date"
+              required="true"
+              class="form-control"
+              id="Cretate_Date_ID"
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Save" />
+
+            <input
+              type="button"
+              class="btn btn-success"
+              id="update_btn"
+              value="Update"
+            />
+            <input
+              type="button"
+              class="btn btn-success"
+              id="reset_btn"
+              value="Reset"
+            />
+            
+           
+
+          </div>
+
+          <div class="row">
+            <input
+              type="text"
+              id="Search_ID"
+              placeholder="search by Fullname,Username,departmentName"
+            />
+            <button
+              type="button"
+              id="btn-search"
+              class="btn btn-search"
+              onclick="getAccountByID()"
+            >
+              <i class="fa fa-search fa-flip-horizontal"></i>
+            </button>
+            <button type="reset" class="btn btn-reset fa fa-times"></button>
+
+            <button type="button"
+            class="btn btn-success"
+            id="cancel"
+            onclick="CancelEmployee()">cancel</button>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="container">
+        <div class="form">
+          <br />
+          <br />
+          <h3>Thông tin nhân viên trên hệ thống</h3>
+          <table class="table table-hover" id="Detail_Staff_ID">
+            <thead>
+              <tr>
+                <th>
+                  ID
+                  <i class="fa fa-fw fa-sort" onclick="changeSort('id')"></i>
+                </th>
+                <th>
+                  Email
+                  <i class="fa fa-fw fa-sort" onclick="changeSort('email')"></i>
+                </th>
+                <th>
+                  Username
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('username')"
+                  ></i>
+                </th>
+                <th>
+                  Fullname
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('fullname')"
+                  ></i>
+                </th>
+                <th>
+                  Department
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('department')"
+                  ></i>
+                </th>
+                <th>
+                  Position
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('position')"
+                  ></i>
+                </th>
+                <th>
+                  Cretate Date
+                  <i
+                    class="fa fa-fw fa-sort"
+                    onclick="changeSort('createDate')"
+                  ></i>
+                </th>
+
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="Result_TB"></tbody>
+          </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination" id="pagination">
+              <!-- <li class="page-item">
+                <a class="page-link" href="#">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="QLNV.js"></script>
+  </body>
+</html>
